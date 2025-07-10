@@ -1,0 +1,37 @@
+.filterContainer {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.2rem; /* Added to move downward */
+}
+
+.filterLabel {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #232323;
+  white-space: nowrap;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filterButton {
+  background: #f4f4f4;
+  color: #232323;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+}
+
+.filterButton:hover,
+.filterButton:focus {
+  background: #e0e0e0;
+  border-color: #232323;
+}

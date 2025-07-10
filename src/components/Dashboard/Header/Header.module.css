@@ -1,0 +1,43 @@
+.header {
+    width: 100%;
+    background: #8f8d8b;
+    color: #212736;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This pushes left and right to edges */
+    padding: 0 32px;
+    height: 64px;
+    box-sizing: border-box;
+  }
+  
+  .left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .weatherIcon {
+    font-size: 2rem;
+    margin-right: 16px;
+  }
+  
+  .date {
+    font-size: 1.1rem;
+  }
+  
+  .time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: -4px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centers horizontally */
+    justify-content: center; /* centers vertically if you set a height */
+    text-align: center;
+    background: #212736;
+    color: #fafbfc;
+    height: 60px; /* adjust as needed */
+    font-family: intern;
+  }

@@ -1,0 +1,56 @@
+.card {
+  border: 1.5px solid #bdbdbd;
+  border-radius: 10px;
+  background: #fff;
+  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 1.2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  background: #f9f8f4;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  gap: 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #232323;
+}
+
+.id {
+  min-width: 2.2em;
+  font-weight: 600;
+  color: #888784;
+}
+
+.name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sales {
+  font-weight: 600;
+  color: #232323;
+  background: #e0dfdb;
+  border-radius: 4px;
+  padding: 0.2em 0.8em;
+  font-size: 0.98em;
+}
