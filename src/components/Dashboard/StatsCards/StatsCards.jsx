@@ -13,9 +13,11 @@ const StatsCards = ({ filter = 'today' }) => {
   useEffect(() => {
     Promise.all([
       client.service('orders').find(),
+      client.service('order_items').find(),
       client.service('crew').find()
-    ]).then(([ordersRes, crewRes]) => {
+    ]).then(([ordersRes, orderItemsRes, crewRes]) => {
       const orders = ordersRes.data;
+      const orderItems = orderItemsRes.data;
       const crew = crewRes.data;
 
       // Date filtering logic
@@ -40,7 +42,16 @@ const StatsCards = ({ filter = 'today' }) => {
       const filteredOrders = orders.filter(order =>
         order.created_at && isInRange(order.created_at.slice(0, 10))
       );
-      const totalSales = filteredOrders.reduce((sum, o) => sum + Number(o.total_price || 0), 0);
+      
+      // Calculate total sales using the same method as SalesChart
+      let totalSales = 0;
+      filteredOrders.forEach(order => {
+        const items = orderItems.filter(item => item.order_id === order.order_id);
+        const orderTotal = items.reduce((sum, item) =>
+          sum + ((item.price || 0) * (item.quantity || 0)), 0);
+        totalSales += orderTotal;
+      });
+      
       setStats({
         totalSales: totalSales.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }),
         orderCount: filteredOrders.length,

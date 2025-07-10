@@ -35,6 +35,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal !important;
+  word-break: break-word !important;
+  max-width: 180px;
 }
 
 .barBg {
@@ -58,4 +61,10 @@
     padding: 1rem 0.5rem;
     min-height: 220px;
   }
+}
+
+/* Ensure chart container is wide enough */
+.chartContainer {
+  min-width: 700px;
+  max-width: 100%;
 }

@@ -72,12 +72,19 @@ const OrderList = () => {
       <div className={styles.list}>
         {orders.map((order) => {
           const items = orderItems.filter(
-            item => String(item.order_id).trim() === String(order.order_id).trim()
+            item => String(item.order_id) === String(order.order_id)
           );
-          const itemNames = items.map(item => item.item_name).join(', ');
+          if (items.length === 0) {
+            console.log('Order with no items:', order);
+          }
+          const itemNames = items.length > 0
+            ? items.map(item => item.item_name).join(', ')
+            : <span style={{ color: 'gray', fontStyle: 'italic' }}>No items</span>;
           return (
             <div className={styles.row} key={order.order_id}>
-              <span className={styles.name}>{itemNames || 'No items'}</span>
+              <span className={styles.name}>
+                <b>Order #{order.order_id}:</b> {itemNames}
+              </span>
               <button className={styles.viewBtn}>View</button>
             </div>
           );

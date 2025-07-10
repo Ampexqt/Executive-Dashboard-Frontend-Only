@@ -75,9 +75,11 @@ function getHourLabel(dateStr) {
   return `${hour}${ampm}`;
 }
 
-function isInRange(dateStr, filter, today, weekStart, monthStr) {
+function isInRange(dateStr, filter, today, weekStart, monthStr, yesterdayStr) {
   if (filter === 'today') {
     return dateStr === today;
+  } else if (filter === 'yesterday') {
+    return dateStr === yesterdayStr;
   } else if (filter === 'week') {
     const d = new Date(dateStr);
     return d >= weekStart && d <= new Date(today);
@@ -101,6 +103,9 @@ const SalesChart = ({ filter = 'today' }) => {
 
       const now = new Date();
       const todayStr = now.toISOString().slice(0, 10);
+      const yesterday = new Date(now);
+      yesterday.setDate(now.getDate() - 1);
+      const yesterdayStr = yesterday.toISOString().slice(0, 10);
       const weekStart = new Date(now);
       weekStart.setDate(now.getDate() - now.getDay());
       const monthStr = todayStr.slice(0, 7);
@@ -111,7 +116,7 @@ const SalesChart = ({ filter = 'today' }) => {
       orders.forEach(order => {
         if (!order.created_at) return;
         const dateStr = order.created_at.slice(0, 10);
-        if (!isInRange(dateStr, filter, todayStr, weekStart, monthStr)) return;
+        if (!isInRange(dateStr, filter, todayStr, weekStart, monthStr, yesterdayStr)) return;
         const hourLabel = getHourLabel(order.created_at);
 
         // Find all items for this order
@@ -138,7 +143,7 @@ const SalesChart = ({ filter = 'today' }) => {
         labels: allHourLabels,
         datasets: [
           {
-            label: filter === 'today' ? 'Today' : filter === 'week' ? 'This Week' : 'This Month',
+            label: filter === 'today' ? 'Today' : filter === 'yesterday' ? 'Yesterday' : filter === 'week' ? 'This Week' : 'This Month',
             data: allHourLabels.map(label => sales[label] || 0),
             backgroundColor: '#b0b0b0',
             borderRadius: 6,

@@ -43,10 +43,13 @@ const options = {
     },
     y: {
       grid: { display: false },
-      ticks: { color: '#232323', font: { size: 15 } },
+      ticks: {
+        color: '#232323',
+        font: { size: 13 }
+      },
     },
   },
-  layout: { padding: 20 },
+  layout: { padding: { left: 150, right: 20, top: 20, bottom: 20 } },
 };
 
 const BestSellers = ({ category = 'Coffee' }) => {
@@ -102,7 +105,9 @@ const BestSellers = ({ category = 'Coffee' }) => {
 
   return (
     <div className={styles.card}>
-      <Bar data={chartData} options={options} height={320} />
+      <div className={styles.chartContainer}>
+        <Bar data={chartData} options={options} height={320} />
+      </div>
     </div>
   );
 };
