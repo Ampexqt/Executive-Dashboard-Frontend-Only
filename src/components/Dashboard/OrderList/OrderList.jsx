@@ -72,10 +72,11 @@ const OrderList = () => {
       <div className={styles.list}>
         {orders.map((order) => {
           const items = orderItems.filter(
-            item => String(item.order_id) === String(order.order_id)
+            item => String(item.order_id).trim() === String(order.order_id).trim()
           );
           if (items.length === 0) {
             console.log('Order with no items:', order);
+            console.log('All orderItems:', orderItems);
           }
           const itemNames = items.length > 0
             ? items.map(item => item.item_name).join(', ')
