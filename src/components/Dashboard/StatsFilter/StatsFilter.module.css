@@ -1,37 +1,54 @@
+/* Stats Filter Container */
 .filterContainer {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  margin-top: 1.2rem; /* Added to move downward */
+  gap: 18px;
 }
 
 .filterLabel {
-  font-weight: 600;
-  font-size: 1.05rem;
+  font-weight: 700;
+  font-size: 1.08rem;
   color: #232323;
-  white-space: nowrap;
+  margin-right: 8px;
 }
 
 .buttonGroup {
   display: flex;
-  gap: 0.75rem;
+  gap: 10px;
 }
 
 .filterButton {
-  background: #f4f4f4;
+  background: #fff;
   color: #232323;
   border: 1.5px solid #bdbdbd;
-  border-radius: 8px;
-  padding: 0.5rem 1.25rem;
+  border-radius: 18px;
+  padding: 6px 22px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s, border 0.2s;
+  transition: background 0.2s, border 0.2s, color 0.2s;
+  outline: none;
 }
 
 .filterButton:hover,
 .filterButton:focus {
   background: #e0e0e0;
   border-color: #232323;
+}
+
+.active {
+  background: #232323;
+  color: #fff;
+  border-color: #232323;
+}
+
+@media (max-width: 700px) {
+  .filterContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .buttonGroup {
+    gap: 6px;
+  }
 }

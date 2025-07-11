@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import { format } from 'date-fns';
 
-const Header = () => {
+const Header = ({ onHamburgerClick }) => {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -16,16 +16,22 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.left}>
+        {/* Hamburger icon for mobile */}
+        <button
+          className={styles.hamburger}
+          aria-label="Open sidebar menu"
+          onClick={onHamburgerClick}
+          type="button"
+        >
+          <span className={styles.hamburgerIcon}>&#9776;</span>
+        </button>
         <span className={styles.weatherIcon}>☁️</span>
         <div>
           <div className={styles.date}>{formattedDate}</div>
           <div className={styles.time}>{formattedTime}</div>
         </div>
       </div>
-          <div className="user-info">
-            <div>John Christian R. Saporno</div>
-            <div>internaxztechzppsu@gmail.com</div>
-          </div>
+      <div className={styles.dashboardTitle}>Executive Dashboard</div>
     </header>
   );
 };

@@ -45,17 +45,23 @@ const StatsCards = ({ filter = 'today' }) => {
       
       // Calculate total sales using the same method as SalesChart
       let totalSales = 0;
+      let totalItemsOrdered = 0;
+      const uniqueOrderIds = new Set();
       filteredOrders.forEach(order => {
         const items = orderItems.filter(item => item.order_id === order.order_id);
         const orderTotal = items.reduce((sum, item) =>
           sum + ((item.price || 0) * (item.quantity || 0)), 0);
         totalSales += orderTotal;
+        // Sum up all item quantities for this order
+        totalItemsOrdered += items.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        // Track unique order IDs (each order is a unique customer)
+        if (order.order_id) uniqueOrderIds.add(order.order_id);
       });
       
       setStats({
         totalSales: totalSales.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }),
-        orderCount: filteredOrders.length,
-        customerCount: crew.length,
+        orderCount: totalItemsOrdered,
+        customerCount: uniqueOrderIds.size,
       });
       setLoading(false);
     }).catch(err => {
@@ -73,7 +79,7 @@ const StatsCards = ({ filter = 'today' }) => {
         <div className={styles.cardValue}>{stats.totalSales}</div>
       </div>
       <div className={styles.card}>
-        <div className={styles.cardTitle}>Order Count</div>
+        <div className={styles.cardTitle}>Total Order Items</div>
         <div className={styles.cardValue}>{stats.orderCount}</div>
       </div>
       <div className={styles.card}>

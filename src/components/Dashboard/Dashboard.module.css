@@ -1,161 +1,198 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;700&display=swap');
+/* === Reset === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-    font-family: 'Poppins', 'Lora', sans-serif;
-    background: #fafbfc;
-  }
+  font-family: 'Poppins', 'Lora', Arial, sans-serif;
+  background: #ede8da;
+}
 
-/* Modern, clean, and responsive dashboard layout */
-
-.dashboardContainer {
+/* === Layout Containers === */
+.dashboardRoot {
   display: flex;
   min-height: 100vh;
-  background: #f7f8fa;
+  background: var(--color-background);
 }
 
-.rightSideWrapper {
+.sidebarContainer {
+  width: 100px;
+  background: var(--color-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Remove any extension/overflow styles */
+  /* No box-shadow, border, or extra height */
+}
+
+.mainContainer {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: var(--color-background);
 }
 
-.mainContent {
-  flex: 1;
-  padding: 2rem 2.5vw 2rem 2.5vw;
+.headerContainer {
+  width: 100%;
+  background: var(--color-background);
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px 32px 32px 32px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 24px;
 }
 
-/* Cards and grid */
-.gridRow {
+/* === Stats Filter & Cards === */
+.statsFilterContainer {
+  margin-bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.statsCardsContainer {
+  width: 100%;
+  display: flex;
+  gap: 32px;
+  margin-bottom: 8px;
+}
+
+/* === Main Grid (Sales Chart & Best Sellers) === */
+.gridContainer {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 2rem;
-}
-
-.leftCol, .rightCol {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.bottomRow {
-  display: flex;
-  gap: 2rem;
-}
-
-/* Card style for all dashboard cards */
-.statsCardsContainer, .card, .pieWrapper, .legend, .list {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 1.5rem;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-/* Fixed height for stats cards */
-.statsCardsContainer {
-  min-height: 40px;
-  max-height: 50px;
-  display: flex;
-  gap: 0.25rem;
-  justify-content: space-between;
-}
-
-.statsCardsContainer .card {
-  flex: 1;
-  min-width: 180px;
-  align-items: center;
-  text-align: center;
-  background: #232323;
-  color: #fff;
-  margin: 0;
-  box-shadow: none;
-}
-
-.statsCardsContainer .cardTitle {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.statsCardsContainer .cardValue {
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-/* Fixed height for main cards */
-.card {
-  min-height: 40px;
-  max-height: 70px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Fixed height for lists */
-.list {
-  max-height: 40px;
-  overflow-y: auto;
-}
-
-/* Fixed height for chart container */
-.chartContainer {
-  min-height: 50px;
-  max-height: 60px;
+  gap: 24px;
   width: 100%;
-  overflow: hidden;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1100px) {
-  .gridRow {
+.salesChartContainer {
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 12px;
+  padding: 0 0 0 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bestSellersColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Reduce gap for tighter vertical alignment */
+  justify-content: flex-start; /* Ensure content starts at the top */
+  margin-top: 0; /* Remove any top margin */
+}
+
+.categoryFilterContainer {
+  margin-bottom: 0; /* Remove any bottom margin to bring toggle closer to chart */
+  padding-top: 0; /* Remove any top padding */
+}
+
+.bestSellersContainer {
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 12px;
+  padding: 16px 12px 8px 12px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 0; /* Remove any top margin */
+}
+
+/* === Bottom Row (Crew, Orders, Menu Stock) === */
+.bottomRowContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.crewListContainer {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.orderListContainer,
+.menuStockContainer {
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 12px;
+  padding: 20px 20px 16px 20px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.menuStockContainer {
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 12px;
+  padding: 20px 20px 16px 20px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Add the following to cut off extra height */
+  height: auto;
+  max-height: fit-content;
+}
+
+/* === Responsive === */
+@media (max-width: 1200px) {
+  .contentContainer {
+    padding: 16px 8px 24px 8px;
+  }
+  .gridContainer {
     grid-template-columns: 1fr;
   }
-  .rightCol, .leftCol {
-    flex-direction: column;
-    gap: 2rem;
+  .bottomRowContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .salesChartContainer,
+  .bestSellersContainer,
+  .crewListContainer,
+  .orderListContainer,
+  .menuStockContainer {
+    margin: 0 auto;
+    max-width: 100%;
   }
 }
 
-@media (max-width: 800px) {
-  .mainContent {
-    padding: 1rem 1vw;
-    gap: 1.2rem;
+@media (max-width: 700px) {
+  .sidebarContainer {
+    width: 0;
+    min-width: 0;
+    background: none;
+    position: static;
+    z-index: auto;
+  }
+  .contentContainer {
+    padding: 4px 2px 8px 2px;
+    gap: 8px;
   }
   .statsCardsContainer {
     flex-direction: column;
-    gap: 1rem;
-    min-height: unset;
-    max-height: unset;
-  }
-  .gridRow {
-    gap: 1rem;
-  }
-  .bottomRow {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .card, .chartContainer, .list {
-    min-height: unset;
-    max-height: unset;
-  }
-}
-
-@media (max-width: 600px) {
-  .mainContent {
-    padding: 0.5rem 0.5vw;
-  }
-  .statsCardsContainer .card {
-    font-size: 1rem;
-    padding: 1rem 0.5rem;
-  }
-  .statsCardsContainer .cardValue {
-    font-size: 1.2rem;
+    gap: 12px;
   }
 }

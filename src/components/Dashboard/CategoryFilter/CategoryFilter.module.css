@@ -15,21 +15,23 @@
   padding: 0.7rem 2.2rem;
   font-size: 1.1rem;
   border-radius: 2rem;
-  border: none;
-  background: #e0e0e0;
-  color: #232323;
-  font-weight: 500;
+  border: 2px solid var(--color-primary);
+  background: var(--color-background);
+  color: var(--color-primary);
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-
-.filterButton:hover {
-  background: #d1d1d1;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  box-shadow: none;
 }
 
 .filterButton.active, .filterButton:active {
-  background: #232323;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  background: var(--color-primary);
+  color: var(--color-background);
+  border: 2px solid var(--color-primary);
+  box-shadow: none;
+}
+
+.filterButton:hover {
+  background: var(--color-secondary);
+  color: var(--color-primary);
 }

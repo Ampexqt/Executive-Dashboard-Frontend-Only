@@ -30,7 +30,7 @@ const options = {
     tooltip: {
       enabled: true,
       callbacks: {
-        label: (context) => `${context.parsed.x} sales`,
+        label: (context) => `${context.parsed.x} sold`, // changed 'sales' to 'sold'
       },
     },
   },
@@ -38,18 +38,30 @@ const options = {
     x: {
       beginAtZero: true,
       grid: { color: '#e0dfdb', borderDash: [4, 4] },
-      ticks: { color: '#232323', font: { size: 15 }, stepSize: 20 },
+      ticks: {
+        color: '#232323',
+        font: { size: 15 },
+        stepSize: 20,
+        callback: function(value, index, ticks) {
+          // Hide the '0' label and the last tick label
+          if (value === 0) return '';
+          if (index === ticks.length - 1) return '';
+          return value;
+        },
+      },
       display: true,
     },
     y: {
       grid: { display: false },
       ticks: {
         color: '#232323',
-        font: { size: 13 }
+        font: { size: 13 },
+        align: 'start', // align y-axis labels to the left
+        padding: 10, // add a bit of left padding
       },
     },
   },
-  layout: { padding: { left: 150, right: 20, top: 20, bottom: 20 } },
+  layout: { padding: { left: 0, right: 20, top: 20, bottom: 20 } },
 };
 
 const BestSellers = ({ category = 'Coffee' }) => {

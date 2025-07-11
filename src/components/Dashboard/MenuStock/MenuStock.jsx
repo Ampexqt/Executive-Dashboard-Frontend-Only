@@ -81,9 +81,6 @@ const MenuStock = () => {
     <div className={styles.card}>
       <div className={styles.title}>Menu Stock</div>
       <div className={styles.pieWrapper}>
-        <div className={styles.pieChart}>
-          <Pie data={chartData} options={options} />
-        </div>
         <div className={styles.legend}>
           {legendData.map((item) => (
             <div className={styles.legendRow} key={item.label}>
@@ -94,6 +91,9 @@ const MenuStock = () => {
               <span>{item.value}% {item.label}</span>
             </div>
           ))}
+        </div>
+        <div className={styles.pieChart}>
+          <Pie data={chartData} options={options} />
         </div>
       </div>
     </div>
