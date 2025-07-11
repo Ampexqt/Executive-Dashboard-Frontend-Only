@@ -60,7 +60,7 @@ src/
 - **Q: I see a warning about LF/CRLF or line endings?**
   - A: This is normal on Windows and won’t affect your project. You can ignore it.
 - **Q: Do I need a backend?**
-  - A: No, this is frontend-only. You can connect any backend if you want.
+  - A: Yes, you need a backend to load actual data. This project is frontend-only, so you can connect it to any backend of your choice to provide real data.
 - **Q: Can I use npm instead of yarn?**
   - A: Yes! All commands work with either.
 
