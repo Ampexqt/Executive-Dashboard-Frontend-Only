@@ -1,107 +1,68 @@
-# 🎉 Welcome to Executive Dashboard Frontend! 🚀
+# 🚀 Executive Dashboard Frontend (AJH Bread & Beans)
 
-**AJH Bread & Beans Executive Dashboard**  
-*Your one-stop shop for visualizing sales, crew, and menu data in style!*
-
----
-
-## 📖 Background
-
-This project is a modern, visually appealing executive dashboard for AJH Bread & Beans, built with React and powered by Chart.js for beautiful data visualizations. It’s designed to help you track sales, manage menu stock, and monitor your crew—all in one place.  
-Whether you’re a manager, a data enthusiast, or just love dashboards, you’ll feel right at home!
+A simple, beautiful dashboard for visualizing sales, crew, and menu data. No backend or special setup required—just clone, install, and run!
 
 ---
 
-## 🖥️ Features
+## 🟢 Quick Start (Step-by-Step)
 
-- 📊 **Sales Charts**: Interactive, real-time sales data with Chart.js.
-- 🏆 **Best Sellers**: See what’s flying off the shelves.
-- 👨‍🍳 **Crew List**: Keep tabs on your team.
-- 🍔 **Menu Stock**: Never run out of your best items.
-- 🗂️ **Category & Stats Filters**: Slice and dice your data.
-- 🖼️ **Beautiful UI**: Custom styles, icons, and a logo to match your brand.
-
----
-
-## 🚦 Quickstart Guide
-
-### 1. **Clone the Repo**
+### 1. **Clone this repository**
 
 ```bash
-git clone https://github.com/your-username/Executive-Dashboard-Frontend.git
-cd Executive-Dashboard-Frontend
+git clone https://github.com/Ampexqt/Executive-Dashboard-Frontend-Only.git
+cd Executive-Dashboard-Frontend-Only
 ```
 
-### 2. **Install Dependencies**
+### 2. **Install dependencies**
 
-We use **Yarn** for package management. If you don’t have it, [install Yarn](https://classic.yarnpkg.com/en/docs/install/).
+- If you have [Yarn](https://classic.yarnpkg.com/en/docs/install/):
+  ```bash
+  yarn install
+  ```
+- Or, if you prefer npm:
+  ```bash
+  npm install
+  ```
 
-```bash
-yarn install
-```
-
-### 3. **Run the App**
+### 3. **Start the app**
 
 ```bash
 yarn start
+# or
+npm start
 ```
 - Open [http://localhost:3000](http://localhost:3000) in your browser.
-- The app will auto-reload as you make changes.
-
-### 4. **Build for Production**
-
-```bash
-yarn build
-```
-- Output goes to the `build/` folder, ready for deployment.
-
-### 5. **Run Tests**
-
-```bash
-yarn test
-```
-- Launches the test runner in interactive watch mode.
+- The app will reload automatically as you make changes.
 
 ---
 
-## 🛠️ Project Structure
+## 🛠️ Project Structure (What’s inside?)
 
 ```
 src/
   ├── App.jsx                # Main app entry
   ├── index.js, index.css    # App bootstrap & global styles
-  ├── assets/                # Images, icons, fonts
-  └── components/
-        └── Dashboard/       # All dashboard features
-              ├── BestSellers/
-              ├── CategoryFilter/
-              ├── CrewList/
-              ├── Header/
-              ├── MenuStock/
-              ├── OrderList/
-              ├── SalesChart/
-              ├── Sidebar/
-              ├── StatsCards/
-              └── StatsFilter/
+  ├── assets/                # Images, icons, logo
+  └── components/            # Dashboard features (charts, lists, etc.)
 ```
 
-- **Logo**: `src/assets/images/logo.png`
-- **Custom styles**: Each component has its own `.module.css` file.
+---
+
+## ⚙️ Configuration
+
+- **No setup needed!**
+- If you want to connect to an API, add a `.env` file (see [Create React App docs](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables)).
 
 ---
 
-## ⚙️ Configuration & Environment
+## ❓ FAQ & Troubleshooting
 
-- **No custom environment variables required out of the box!**
-- If you want to add API endpoints or secrets, create a `.env` file in the root (see [Create React App docs](https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables)).
-
----
-
-## 🧑‍💻 For Developers
-
-- **React 19** and **Chart.js 4** for modern, fast UI.
-- Modular component structure for easy extension.
-- All dependencies are listed in `package.json`.
+- **Q: I see a warning about LF/CRLF or line endings?**
+  - A: This is normal on Windows and won’t affect your project. You can ignore it.
+- **Q: Do I need a backend?**
+  - A: No, this is frontend-only. You can connect any backend if you want.
+- **Q: Can I use npm instead of yarn?**
+  - A: Yes! All commands work with either.
 
 ---
 
@@ -111,26 +72,4 @@ MIT License © 2025 Jhon Harold Rueda
 
 ---
 
-## 💡 Tips & Fun Facts
-
-- The dashboard is designed for a coffee & bread shop, but you can adapt it for any business!
-- The sidebar features a logout icon and your brand’s logo for a professional touch.
-- All UI is responsive and looks great on big screens.
-
----
-
-## ❓ FAQ
-
-**Q: Do I need a backend?**  
-A: This is a frontend-only project. You can connect it to any backend you like!
-
-**Q: Can I use npm instead of yarn?**  
-A: Sure! Just swap `yarn` for `npm` in the commands.
-
----
-
-## 🥳 Happy Dashboarding!
-
----
-
-**Ready to get started? Clone, install, and run! If you have questions, open an issue or reach out.**
+**That’s it! You’re ready to use the Executive Dashboard. If you have questions, open an issue or reach out. Enjoy!**
