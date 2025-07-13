@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from './OrderList.module.css';
 import client from '../../../api/feathers';
+import { format } from 'date-fns';
+import ViewOrderModal from '../../Modals/ViewOrders/ViewOrders';
 
 const ORDERS_PER_PAGE = 4;
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [orderItems, setOrderItems] = useState([]);
+  const [crew, setCrew] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -16,18 +21,20 @@ const OrderList = () => {
     // Initial fetch
     Promise.all([
       client.service('orders').find(),
-      client.service('order_items').find()
+      client.service('order_items').find(),
+      client.service('crew').find()
     ])
-      .then(([ordersRes, orderItemsRes]) => {
+      .then(([ordersRes, orderItemsRes, crewRes]) => {
         if (isMounted) {
           setOrders(ordersRes.data);
           setOrderItems(orderItemsRes.data);
+          setCrew(crewRes.data);
           setLoading(false);
         }
       })
       .catch(err => {
         if (isMounted) {
-          console.error('Error fetching orders or order_items:', err);
+          console.error('Error fetching orders, order_items, or crew:', err);
           setLoading(false);
         }
       });
@@ -36,17 +43,20 @@ const OrderList = () => {
     const updateData = () => {
       Promise.all([
         client.service('orders').find(),
-        client.service('order_items').find()
-      ]).then(([ordersRes, orderItemsRes]) => {
+        client.service('order_items').find(),
+        client.service('crew').find()
+      ]).then(([ordersRes, orderItemsRes, crewRes]) => {
         if (isMounted) {
           setOrders(ordersRes.data);
           setOrderItems(orderItemsRes.data);
+          setCrew(crewRes.data);
         }
       });
     };
 
     const orderService = client.service('orders');
     const orderItemsService = client.service('order_items');
+    const crewService = client.service('crew');
 
     orderService.on('created', updateData);
     orderService.on('patched', updateData);
@@ -56,6 +66,8 @@ const OrderList = () => {
     orderItemsService.on('patched', updateData);
     orderItemsService.on('removed', updateData);
 
+    crewService.on && crewService.on('patched', updateData); // in case crew can be updated
+
     return () => {
       isMounted = false;
       orderService.removeListener('created', updateData);
@@ -64,6 +76,7 @@ const OrderList = () => {
       orderItemsService.removeListener('created', updateData);
       orderItemsService.removeListener('patched', updateData);
       orderItemsService.removeListener('removed', updateData);
+      crewService.removeListener && crewService.removeListener('patched', updateData);
     };
   }, []);
 
@@ -80,22 +93,33 @@ const OrderList = () => {
     setCurrentPage(page);
   };
 
+  const handleView = (order) => {
+    setSelectedOrder(order);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedOrder(null);
+  };
+
   return (
     <div className={styles.card}>
-      <div className={styles.title}>Live Order List</div>
+      <div className={styles.title}>Order History</div>
       <div className={styles.list}>
         {paginatedOrders.map((order, idx) => {
-          const items = orderItems.filter(
-            item => String(item.order_id).trim() === String(order.order_id).trim()
-          );
-          const itemNames = items.length > 0
-            ? items.map(item => item.item_name).join(', ')
-            : <span style={{ color: 'gray', fontStyle: 'italic' }}>No items</span>;
+          let dateTime = '';
+          if (order.created_at) {
+            const d = new Date(order.created_at);
+            dateTime = format(d, 'PPpp'); // e.g. Jul 14, 2025 at 12:30 AM
+          } else {
+            dateTime = <span style={{ color: 'gray', fontStyle: 'italic' }}>No date</span>;
+          }
           return (
             <div className={styles.row} key={order.order_id}>
               <span className={styles.id}>{String((currentPage - 1) * ORDERS_PER_PAGE + idx + 1).padStart(3, '0')}.</span>
-              <span className={styles.name}>{itemNames}</span>
-              <button className={styles.viewBtn}>View</button>
+              <span className={styles.name}>{dateTime}</span>
+              <button className={styles.viewBtn} onClick={() => handleView(order)}>View</button>
             </div>
           );
         })}
@@ -120,6 +144,13 @@ const OrderList = () => {
           ))}
         </div>
       )}
+      <ViewOrderModal
+        open={modalOpen}
+        onClose={handleCloseModal}
+        order={selectedOrder}
+        orderItems={orderItems}
+        crew={crew}
+      />
     </div>
   );
 };
