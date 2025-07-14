@@ -96,3 +96,15 @@
     height: 100px;
   }
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.1rem;
+  }
+  .legendRow {
+    font-size: 0.9rem;
+  }
+  .legend {
+    min-width: 80px;
+  }
+}

@@ -96,3 +96,21 @@
     padding: 4px 10px;
   }
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.1rem;
+  }
+  .row {
+    font-size: 0.95rem;
+  }
+  .id {
+    font-size: 0.9rem;
+  }
+  .name {
+    font-size: 0.9rem;
+  }
+  .viewBtn {
+    font-size: 0.85rem;
+  }
+}

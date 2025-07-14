@@ -81,3 +81,31 @@
   background: #1B4F9C;
   box-shadow: 0 2px 8px rgba(45,114,217,0.13);
 }
+
+@media (max-width: 480px) {
+  .chartContainer {
+    padding: 8px 2px 4px 2px;
+    border-radius: 8px;
+  }
+  .chartArea {
+    padding: 0;
+    min-width: 0;
+    width: 100vw;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+  .exportReportBtn {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+  .customLegendContainer {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .chartTitle {
+    font-size: 1rem;
+  }
+  .legendItem {
+    font-size: 0.85rem;
+  }
+}

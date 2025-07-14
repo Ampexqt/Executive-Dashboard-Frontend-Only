@@ -89,3 +89,26 @@
   background: #8f8d8b;
   color: #232323;
 }
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 1rem 0.5rem 0.7rem 0.5rem;
+    min-width: unset;
+    max-width: 98vw;
+    border-radius: 12px;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .label, .value, .orderItemsList {
+    font-size: 0.95rem;
+  }
+  .closeBtn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1.2rem;
+  }
+  .buttonGroup {
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+}

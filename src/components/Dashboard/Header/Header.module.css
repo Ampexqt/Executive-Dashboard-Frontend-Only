@@ -87,3 +87,21 @@
     display: flex;
   }
 }
+
+@media (max-width: 480px) {
+  .weatherIcon {
+    font-size: 1.2rem;
+  }
+  .date {
+    font-size: 0.85rem;
+  }
+  .time {
+    font-size: 0.95rem;
+  }
+  .dashboardTitle {
+    font-size: 1.1rem;
+  }
+  .user-info {
+    font-size: 0.85rem;
+  }
+}

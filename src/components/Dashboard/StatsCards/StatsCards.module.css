@@ -49,3 +49,12 @@
     font-size: 1.3rem;
   }
 }
+
+@media (max-width: 480px) {
+  .cardTitle {
+    font-size: 0.85rem;
+  }
+  .cardValue {
+    font-size: 1.1rem;
+  }
+}

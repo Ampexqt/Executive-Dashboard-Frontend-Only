@@ -107,3 +107,23 @@
   background: #18804a;
   box-shadow: 0 2px 12px rgba(33,163,102,0.18);
 }
+
+@media (max-width: 480px) {
+  .modalContent {
+    padding: 16px 4px 12px 4px;
+    min-width: unset;
+    max-width: 98vw;
+    border-radius: 10px;
+  }
+  .modalTitle {
+    font-size: 1rem;
+  }
+  .exportText, .excelBtn {
+    font-size: 0.95rem;
+  }
+  .closeButton {
+    font-size: 1.2rem;
+    width: 28px;
+    height: 28px;
+  }
+}

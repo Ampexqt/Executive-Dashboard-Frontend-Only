@@ -52,3 +52,13 @@
     gap: 6px;
   }
 }
+
+@media (max-width: 480px) {
+  .filterLabel {
+    font-size: 0.9rem;
+  }
+  .filterButton {
+    font-size: 0.85rem;
+    padding: 4px 12px;
+  }
+}

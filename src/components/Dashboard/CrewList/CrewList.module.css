@@ -56,3 +56,18 @@
   font-weight: bold;
   color: #232323;
 }
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.1rem;
+  }
+  .row {
+    font-size: 0.95rem;
+  }
+  .id, .sales {
+    font-size: 0.9rem;
+  }
+  .name {
+    font-size: 0.9rem;
+  }
+}
